@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Speaking In Code</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<script src='assets/js/module.js'></script>
+	<script src="assets/js/factory.js"></script>
+	<script src="assets/js/usercontroller.js"></script>
+	<script src='assets/js/siccontroller.js'></script>
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+	
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js" rel="stylesheet"/>
+
+</head>
+
+<body>
+	<!-- Header -->
+	<header id="header">
+		<div class="inner">
+			<nav id="nav" style="float:left; width:80vw">
+				<a style="float:left" href="#">Home</a>
+				<a style="float:left" href="#">Account</a>
+				<a style="float:left" href="#">Contact</a>
+				<ul style="float:right">Log In</ul>
+			</nav>
+			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+		</div>
+	</header>
+	<!-- Banner -->
+	<section id="banner">
+		<div class="inner">
+			<header>
+				<h1 style="color:rgba(255,255,255,.9)">Speaking In Code</h1>
+			</header>
+			<div class="icondiv">
+				<div id="icon1">
+					<img class="icons" src="images/knowledge.png">
+					<h3>Learn</h3>
+					<p>Get Started Here</p>
+				</div>
+				<A href="#BOTTOM">
+					<div id="icon2" href="#BOTTOM">
+						<img class="icons" src="images/speak.png">
+						<h3>Speak in Code</h3>
+						<p>Start Speaking in Code!</p>
+					</div>
+				</A>
+				<div id="icon3">
+					<img class="icons" src="images/contribute.png">
+					<h3>Contribute</h3>
+					<p>Become a Part of SiC</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Three -->
+	<section id="three" class="wrapper align-center">
+		<div class="inner">
+			<div class="flex flex-2">
+				<article>
+					<div class="image round">
+						<img src="images/pic01.jpg" alt="Pic 01" />
+					</div>
+					<header>
+						<h3>Additional<br />Learning Resources</h3>
+					</header>
+					<p>SpeakingInCode is a great place to practice <br /> fundamental coding abilites, but there are also <br /> many other
+						wonderful online resources available. <br />Visit Learn to find those resources as well as user-created tips!</p>
+					<footer>
+						<a href="#" class="button">Learn More</a>
+					</footer>
+				</article>
+				<article>
+					<div class="image round">
+						<img src="images/pic02.jpg" alt="Pic 02" />
+					</div>
+					<header>
+						<h3>Contribute by Creating<br /> Your Own Exercises!</h3>
+					</header>
+					<p>Contribute to speakingInCode by creating your <br /> own exercises and submitting user tips!<br /> These exercises and
+						tips will become<br /> permanent additions to speakingInCode.</p>
+					<footer>
+						<a href="#" class="button">Contribute!</a>
+					</footer>
+				</article>
+			</div>
+		</div>
+	</section>
+<div ng-app="SpeakingInCode" ng-controller="SICController as sCtrl">
+<A NAME="BOTTOM"></A>
+		<!--APPSCREENER-->
+	<div class="appholder">
+			<div ng-show="sCtrl.appShow" class="appalt">
+					<div class = "type" ng-show="sCtrl.typeShow">
+						<h2 class="fish"> Speaking in Code<h2>
+						<h1> Select the exercise type!</h1>
+			<select ng-model="sCtrl.exercise.type" class="selectpicker">
+                    	<option value="" disabled>Select one--</option>
+						<option value="js5">JavaScript ES5</option>
+						<option value="js6">JavaScript ES6</option>
+						<option value="angularjs">AngularJS</option>
+						<option value="expressjs">ExpressJS</option>
+						<option value="htmlcss">HTML/CSS</option>
+						<option value="nodejs">NodeJS</option>
+						<option value="terminal">Terminal</option>
+            </select>
+						   <br>
+						<button id="typeselect"class="btn btn-primary" ng-click="sCtrl.toggle1()">Select</button>
+					</div>
+				<div class = "difficulty" ng-show="!sCtrl.typeShow">
+					<h2 class="fish"> Speaking in Code<h2>
+					<h1> Select your difficulty!</h1>
+			<select ng-model="sCtrl.exercise.difficulty" class="selectpicker">
+                    	<option value="" disabled>Select one--</option>
+                    	<option value="easy">Easy</option>
+                    	<option value= "medium">Medium</option> 
+                    	<option value= "hard">Hard</option>
+            </select>
+					  <br>
+						<button ng-click="sCtrl.getExercise();sCtrl.toggle2()" class="btn btn-primary">Select</button>
+				</div>
+			</div>
+		
+	</div>
+		<!--APPP!-->
+        </form>
+
+<div class="app" ng-show="!sCtrl.appShow">
+	<form>
+				<h1 id="exerciseName">
+					Exercise:
+					{{sCtrl.exercise.name}}
+					</h1> 
+				<h3 style="text-align:center">Speaking in Code</h3>
+	<div id= "buttonHolder">
+			<img id="playButton" src="images/play.png">
+		<img  id="pauseButton" src="images/pause.png">
+		<img id="repeatButton" src="images/repeat.png">
+			<img id="skipButton" src="images/skip.png">
+			<img id="hintButton" src="images/question.png">
+	</div>
+
+	<form id="tomato" ng-submit="sCtrl.winCheck()"> 
+        <textarea ng-model="sCtrl.submission" class="form-control" type="text" id="answerText"ng-model='sCtrl.name' placeholder="Enter your Code!" rows="3"></textarea>
+            <button class= "formbutton" id="answerButton"type="submit"> Answer</button>
+	</form>
+
+</div>
+
+</div>
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner" style="color:rgb(33,43,64)">
+					<h3>Get in touch</h3>
+
+					<form action="#" method="post">
+
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input name="name" id="name" type="text" placeholder="Name">
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input name="email" id="email" type="email" style="color:rgb(33,43,64)"placeholder="Email">
+						</div>
+						<div class="field">
+							<label style"color:rgb(33,43,64,0.5)" for="message">Message</label>
+							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input value="Send Message" class="button alt" type="submit"></li>
+						</ul>
+					</form>
+
+					<div class="copyright">
+						&copy; SpeakingInCode. Design: Christopher Brown and the Internet
+					</div>
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

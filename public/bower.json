@@ -1,0 +1,17 @@
+{
+  "name": "speakingincode",
+  "description": "Speaking in Code App",
+  "main": "server.js",
+  "authors": [
+    "Christopher Brown"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

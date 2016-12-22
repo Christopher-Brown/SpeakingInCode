@@ -1,0 +1,12 @@
+module.exports= {
+    get allUsers:(req,res) => {
+        Users.find({}, (err,docs)=>{
+            if(err){
+                console.log("Error getting users from database", err);
+                res.send(err);
+            }else {
+                console.log("Got users from db: ", docs)
+                res.send(docs);
+            }
+        });
+    },
