@@ -7,7 +7,10 @@ function exerciseCtrl(SICFactory) {
     var eCtrl = this; 
     window.eCtrl = eCtrl; // leaking the controller to the window for debugging purposes
     eCtrl.exercise = {}; 
-    
+    eCtrl.speakInstructions = function() {
+        console.log('speaking instructions');
+        window.responsiveVoice.speak(eCtrl.exercise.instructions, "US English Female",{rate:0.8},{volume: 2});
+    }
     eCtrl.exercise.solutions = [""];
     eCtrl.exercise.answers = [""];
     eCtrl.addSolution = function() {

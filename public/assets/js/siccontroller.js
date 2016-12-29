@@ -1,14 +1,13 @@
 angular.module('SpeakingInCode')
 
 .controller('SICController', sicCtrl);
-
 sicCtrl.$inject = ["SICFactory"];
 var appShow = true;
+
 function sicCtrl (SICFactory){
     var sCtrl = this;
         console.log("sCtrl Functioning!");
         console.log('FROM THE FACTORY : ', SICFactory);
-
     // sCtrl.listOfExercises = SICFactory.exerciseList;
     //     console.log("this is the list",sCtrl.listOfExercises);
     //     this.submit1 = true;
@@ -16,13 +15,31 @@ function sicCtrl (SICFactory){
     //         this.submit1 = false;
     //         return this.submit1;
     //     };
+    sCtrl.appsuccess = false;
     sCtrl.appShow = true;
     sCtrl.typeShow = true;
-    sCtrl.getChallenge = {};
-
     sCtrl.exercise = {};
+    sCtrl.exerciseData = {};
+    sCtrl.challenge = {};
+    sCtrl.submission = "";
+    // sCtrl.getChallenge = function(){
+    //     sCtrl.getExercise();
+    //     sCtrl.challenge = sCtrl.exerciseData[Math.floor(Math.random() * sCtrl.exerciseData.length)]
+    //     console.log("current challenge:",sCtrl.challenge);
+    // }
 
-
+    sCtrl.doSomething = function() {
+        console.log('testing voice');
+        window.responsiveVoice.speak(sCtrl.challenge.instructions, "US English Female",{rate:0.8},{volume: 2});
+    }
+    sCtrl.giveHint = function() {
+        console.log('testing hint');
+        window.responsiveVoice.speak(sCtrl.challenge.hint, "US English Female",{rate:0.8},{volume: 2});
+    }
+        sCtrl.pause = function() {
+        window.responsiveVoice.cancel();
+        console.log("canceling audio playback");
+    }
 
     sCtrl.getExercise = function() {
         console.log("Getting an exercise : ",sCtrl.exercise.type, sCtrl.exercise.difficulty);
@@ -33,10 +50,13 @@ function sicCtrl (SICFactory){
                 console.log("Success getting exercise: ", success.data);
 
                 // set the returned data to a property on our controller so we can display it in the html
-                sCtrl.exerciseData = success.data;
+               sCtrl.exerciseData = success.data;
+                sCtrl.challenge = sCtrl.exerciseData[Math.floor(Math.random() * sCtrl.exerciseData.length)]
+                console.log("current challenge:",sCtrl.challenge);
             }, function(error) {
                 console.log("Error submitting user: ", error); 
             });
+ }
 //        switch(sCtrl.difficulty){
 //            case "easy":
 //                 var easyArray = sCtrl.listOfExercises.filter(function(element){
@@ -64,39 +84,33 @@ function sicCtrl (SICFactory){
 //                 console.log(sCtrl.challenge);
 //                 console.log(sCtrl.challenge.instruction);
 //       }
-      
-}
    
-//     sCtrl.winCheck = function(){
-//         if(sCtrl.submission){
-//             var answerkey = sCtrl.challenge.answers;
-//             var checker = sCtrl.submission.toLowerCase().split(" ").join(""); 
-//             function arrayContains(checker, answers){
-//             return (answers.indexOf(checker) > -1);
-//         }  
-//         }
-//         if (answerkey.indexOf(checker) >= 0) {
-//             console.log("Pass!")
-//                 document.getElementById('tomato').value = "";
-//             alert("Great Job!!")
-//         }   else {
-//             console.log("Fail Motherfucker");
-//             alert("Try again Motherfucker");
+    sCtrl.winCheck = function(){
+        if(sCtrl.submission){
+            var answerkey = sCtrl.challenge.answers;
+            var checker = sCtrl.submission.toLowerCase().split(" ").join(""); 
+            function arrayContains(checker, answers){
+            return (answers.indexOf(checker) > -1);
+        }  
+        }
+        if (answerkey.indexOf(checker) >= 0) {
+            console.log("Pass!")
+            sCtrl.toggle3();
+            document.getElementById('answerText').value = "";
+        }   else {
+            console.log("Fail Motherfucker");
+            alert("Try again Motherfucker");
 
-//         }
-//         console.log(answerkey)
-//         console.log("running checker!")
-//         console.log(checker);
-//     }
+        }
+        console.log(answerkey)
+        console.log("running checker!")
+        console.log(checker);
+    }
 //     sCtrl.cancel = function() {
 //         window.responsiveVoice.cancel();
 //         console.log("canceling audio playback");
 //     }
-//     sCtrl.doSomething = function() {
-//         console.log('test2');
-//         window.responsiveVoice.speak(sCtrl.challenge.instruction, "US English Female",{rate:0.8},{volume: 2});
-//     }
-// 
+
 
     sCtrl.toggle2 = function() {
         if(sCtrl.exercise.difficulty){
@@ -112,6 +126,10 @@ function sicCtrl (SICFactory){
         }else{
             console.log("Trying to submit type")
         }
+    }
+    sCtrl.toggle3 = function() {
+        console.log("Running")
+       sCtrl.appsuccess = !sCtrl.appsuccess
     }
 
 }

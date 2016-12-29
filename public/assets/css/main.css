@@ -3280,11 +3280,11 @@ padding-top:6px;
 
 		}
 #answerText{
-    width:35%;
+    width:55%;
 	margin: auto;
 	text-align: center;
 	position: absolute;
-    top: 60%;
+    top: 33%;
     left: 50%;
     transform: translate(-50%, -10%);
 
@@ -3292,50 +3292,139 @@ padding-top:6px;
 #answerButton{
 
 	margin: auto;
-	text-align: center;
-	width:15%;
-	top: 64%;
-    left: 68%;
+	width:12%;
+	text-align:left;
+	top:39%;
+    left: 80%;
 	position:absolute;
 
 }
 #pauseButton{
 	margin: auto;
-	width:7.5%;
-	top: 28%;
-	height:20%;
-    left: 60%;
+	width:9%;
+	bottom:9%;
+	height:18%;
+    left: 32%;
 	position:absolute;
 }
 #skipButton{
 	margin: auto;
-	width:13%;
-	top: 23%;
-	height:29%;
-    left: 80%;
+	width:10%;
+	bottom:9%;
+	height:18%;
+    left: 61%;
 	position:absolute;
 }
 #playButton{
 	margin: auto;
-	width:13%;
-	top: 23%;
-	height:29%;
-    left: 43%;
-	position:absolute;
-}
-#repeatButton{
-	margin: auto;
-	width:7.5%;
-	top: 28%;
+	width:10%;
+	bottom:9%;
 	height:20%;
-    left: 32.5%;
+    left: 46%;
 	position:absolute;
 }
 #hintButton{
 	margin: auto;
 	width:7.5%;
-	top: 60%;
-	height:20%;
-    left: 15%;
+	top: 42%;
+	height:15%;
+    left: 11%;
 	position:absolute;
+}
+.buttonHolder{
+	display:inline-block;
+}
+
+.appHeader{
+	text-align: center;
+	font-size: 1.8em;
+	margin-top:30px;
+}
+
+.appsuccess {
+		max-width: 40em;
+		position:relative;
+		margin: 0 auto;
+		background-color:rgba(255,255,255,1);
+		border-radius:10px;
+		height:200px;
+		padding:10px;
+		margin-bottom:3vh;
+		border:3px solid rgba(186, 220, 221, .8);
+		text-align: center;
+	}
+
+		@media screen and (max-width: 1280px) {
+
+			.inner {
+				max-width: 90%;
+			}
+
+		}
+
+		@media screen and (max-width: 480px) {
+
+			.inner {
+				max-width: 90%;
+			}
+
+		}
+
+#contributeHeader{
+	text-align: center;
+	font-size: 1.4em;
+}
+
+#nameHolder{
+	width:30%;
+	/*display:inline-block;*/
+	margin:0 auto;
+	text-align: center;
+}
+
+
+#form1{
+	display: inline-block;
+}
+.label{
+	display:inline-block;
+	margin:auto;
+	vertical-align: center;
+}
+.pumpkin{
+	margin:auto;
+	text-align: center;
+	padding-bottom: 100px;
+	position:relative;
+}
+
+#exampleSelect1{
+	width:20%;
+	/*display:inline-block;*/
+	margin:0 auto;
+	text-align: center;
+}
+
+#answers{
+	width:40%;
+	/*display:inline-block;*/
+	margin:0 auto;
+	text-align: center;
+}
+#solutions{
+	width:40%;
+	/*display:inline-block;*/
+	margin:0 auto;
+	text-align: center;
+}
+
+#exampleTextarea{
+	width:40%;
+	/*display:inline-block;*/
+	margin:0 auto;
+	text-align: center;
+}
+#speaking{
+	width:50px;
+	height:50px;
 }
