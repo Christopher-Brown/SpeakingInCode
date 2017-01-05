@@ -65,7 +65,9 @@ app.get('/api/exercise/:type/:difficulty', (req, res) => {
         }
     });
 });
-var Routes = require('./routes/index');
+var Routes = require('./routes');
+
+Routes(app);
 
 app.use(express.static('public'));
 // mount body parser middleware
@@ -89,8 +91,6 @@ app.use((req, res, next) => {
     console.log("Session counter: ", req.session.counter);
     next();
 });
-
-Routes(app);
 
 
 

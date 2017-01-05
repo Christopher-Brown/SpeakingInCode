@@ -3,7 +3,7 @@ var User = require('../models/user'),
     errors = {
         general: {
             status: 500,
-            message: 'Backend Error'
+            message: 'YOU"RE GETTING AN ERROR FROM AUTH.JS'
         },
         login: {
             status: 403,
@@ -18,7 +18,7 @@ module.exports = {
     },
     login: (req, res) => { // form post submission
         console.info('auth.login.payload:', req.body);
-        
+        console.log("Login running!");
         User.findOne({
             email: req.body.email
         }, (err, user) => {
@@ -52,7 +52,7 @@ module.exports = {
     },
     register: (req, res) => {
         console.info('Register payload:'.cyan, req.body);
-
+        console.log('register request received');
         var newUser = new User(req.body);
 
         newUser.save((err, user) => {

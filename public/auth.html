@@ -53,15 +53,15 @@
             
             <fieldset>
               
-                <input class="loginInput" required placeholder="Create a public username" required type="text" ng-model="auth.register.name"/>
+                <input class="loginInput" required placeholder="Create a public username" required type="text" ng-model="auth.payloads.register.name"/>
             </fieldset>
             <fieldset>
     
-                <input class="loginInput" required placeholder="Email" type="email" required ng-model="auth.register.email"/>
+                <input class="loginInput" required placeholder="Email" type="email" required ng-model="auth.payloads.register.email"/>
             </fieldset>
             <fieldset>
       
-            <input class="loginInput" required placeholder="Create a password" type="password" ng-model="auth.register.password"/>
+            <input class="loginInput" required placeholder="Create a password" type="password" ng-model="auth.payloads.register.password"/>
             </fieldset>
             <button class="loginButton"  ng-click="auth.register.submit($event)" type="submit">Register</button>
             <p ng-class="auth.register.alert">{{ auth.register.message }}</p>
