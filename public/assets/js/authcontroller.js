@@ -1,10 +1,11 @@
-angular.module("SpeakingInCode")
-.controller('module.auth.controller', Auth)
+angular.module('SpeakingInCode')
+    .controller('module.auth.controller', Auth)
 
 Auth.$inject = ['$http'];
 
 function Auth($http) { // window.Auth
     console.info('Auth controller loaded!');
+
 
     var auth = this;
 
@@ -12,11 +13,20 @@ function Auth($http) { // window.Auth
         login: {},
         register: {}
     };
-
+    auth.loginShow = true;
+    auth.toggle = function() {
+        auth.loginShow = !auth.loginShow
+          console.log("Changing login app")
+        };
+    auth.toggle1 = function() {
+    auth.loginShow = false;
+    console.log("Changing login app 1")
+        };
     auth.login = {
         // happens when the user clicks submit on the login form
         submit: function($event) { // click-event
             console.info('auth.login.submit', $event);
+            console.log("Login is working");
 
             $http.post('/login', auth.payloads.login)
                 .then(auth.login.success, auth.login.error);
@@ -37,6 +47,7 @@ function Auth($http) { // window.Auth
 
     auth.register = {
         submit: function () {
+            console.log("Register is working")
             // happens when the user clicks submit on the register form
             $http.post('/register', auth.payloads.register)
                 .then(auth.register.success, auth.register.error);

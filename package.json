@@ -4,17 +4,22 @@
   "description": "Speaking in Code App",
   "main": "server.js",
   "dependencies": {
+    "bcryptjs": "^2.4.0",
     "body-parser": "^1.15.2",
+    "client-sessions": "^0.7.0",
+    "colors": "^1.1.2",
     "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.5",
     "express": "^4.14.0",
     "logger": "0.0.1",
     "mongoose": "^4.7.1",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "sessions": "0.0.2-7"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon"
   },
   "repository": {
     "type": "git",

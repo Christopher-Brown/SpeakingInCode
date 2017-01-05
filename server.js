@@ -1,15 +1,8 @@
+require('colors');
 var express = require('express');
+var config = require('./package')
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var logger = require('morgan');
-var User = require('./models/user.js');
-var Exercise = require('./models/exercise.js')
-var PORT = process.env.PORT || 3000;
-
-// create our express app object
-var app = express();
-
-// connect to mongoose
+var mongoose = require('mongoose')
 mongoose.connect("mongodb://localhost/SpeakingInCode", (err)=>{
     if(err){
         console.log("Error connecting to mongo", err);
@@ -18,15 +11,25 @@ mongoose.connect("mongodb://localhost/SpeakingInCode", (err)=>{
     }
 });
 
-// mount body parser middleware
-app.use(bodyParser.json(), bodyParser.urlencoded({extended:true}));
 
-// mount static fileserver middleware
-app.use(express.static('public'));
-
-// every route needs a method, url, and route handler
-// the (req, res) function is called a route handler
-app.post('/createExercise', (req, res)=>{
+var logger = require('morgan');
+var User = require('./models/user.js');
+var Exercise = require('./models/exercise.js');
+var PORT = process.env.PORT || 3000;
+var sessions = require('client-sessions')({
+    cookieName: config.name, // front-end cookie name, currently pulled from package.json, feel free to change
+    secret: 'DR@G0N$', // the encryption password : keep this safe
+    requestKey: 'session', // req.session,
+    duration: (86400 * 1000) * 7, // one week in milliseconds
+    cookie: {
+        ephemeral: false, // when true, cookie expires when browser is closed
+        httpOnly: true, // when true, the cookie is not accesbile via front-end JavaScript
+        secure: false // when true, cookie will only be read when sent over HTTPS
+    }
+}); // encrypted cookies!
+// create our express app object
+var app = express();
+app.post('/createExercise', (req, res) => {
     console.log("Body: ", req.body);
 
     // validate the data in the request body using the schema    
@@ -34,7 +37,7 @@ app.post('/createExercise', (req, res)=>{
 
     // put the user data in the database
     newExercise.save((err, doc) => {
-        if(err) {
+        if (err) {
             console.log("Error adding exercise to database ", err);
             res.send(err);
         } else {
@@ -44,30 +47,16 @@ app.post('/createExercise', (req, res)=>{
     });
 });
 
-app.post('/users', (req, res)=>{
-    console.log("Body: ", req.body);
-
-    // validate the data in the request body using the schema    
-    var newUser = new User(req.body);
-
-    // put the user data in the database
-    newUser.save((err, doc) => {
-        if(err) {
-            console.log("Error adding to database ", err);
-            res.send(err);
-        } else {
-            console.log("Added person to database! ", doc);
-            res.send(doc);
-        }
-    });
-});
 
 // create a route to get exercises by type and difficulty
-app.get('/api/exercise/:type/:difficulty', (req, res)=>{
+app.get('/api/exercise/:type/:difficulty', (req, res) => {
     console.log("Getting exercises", req.params.type);
 
-    Exercise.find({ type:req.params.type, difficulty:req.params.difficulty}, (err, data) =>{
-        if(err){
+    Exercise.find({
+        type: req.params.type,
+        difficulty: req.params.difficulty
+    }, (err, data) => {
+        if (err) {
             console.log("Error getting an exercise from the DB:", err);
             res.send(err);
         } else {
@@ -76,25 +65,39 @@ app.get('/api/exercise/:type/:difficulty', (req, res)=>{
         }
     });
 });
+var Routes = require('./routes/index');
 
-// create a route to get profiles by name
-app.get('/api/user/:name', (req, res)=>{
-    console.log("Name requested: ", req.params.name);
+app.use(express.static('public'));
+// mount body parser middleware
+app.use(
+    logger,
+    sessions,
+    bodyParser.json(),
+    bodyParser.urlencoded({ extended: true })
+);
 
-    User.findOne({ name: req.params.name }, (err, data) =>{
-        if(err){
-            console.log("Error getting a user from the database: ", err);
-            res.send(err);
-        } else {
-            console.log("User retrieved from the database: ", data);
-            res.send(data);
-        }
-    });
+
+
+// every route needs a method, url, and route handler
+// the (req, res) function is called a route handler
+app.use((req, res, next) => {
+    if (req.session.uid) {
+        req.session.counter++;
+    } else {
+        req.session.counter = 0;
+    }
+    console.log("Session counter: ", req.session.counter);
+    next();
 });
 
+Routes(app);
+
+
+
+
 //listen for connections
-app.listen(PORT, (err)=>{
-    if(err) {
+app.listen(PORT, (err) => {
+    if (err) {
         console.log("Error starting server: ", err);
     } else {
         console.log("Server started on port ", PORT);

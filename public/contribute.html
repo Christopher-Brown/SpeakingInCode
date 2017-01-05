@@ -22,10 +22,12 @@
 	<header id="header">
 		<div class="inner">
 			<nav id="nav" style="float:left; width:80vw">
-				<a style="float:left" href="#">Home</a>
+				<a href="index.html" style="float:left" href="#">Home</a>
 				<a style="float:left" href="#">Account</a>
 				<a style="float:left" href="#">Contact</a>
+        <a style="margin-right:12%;float:right" href="auth.html">
 				<ul style="float:right">Log In</ul>
+        </a>
 			</nav>
 			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 		</div>
@@ -78,7 +80,12 @@
     </select>
   </div>
     <br>
-
+     <div class="form-group">
+    <label class="label">Verbal Instructions:</label>
+    <textarea class="form-control" ng-model="eCtrl.exercise.instructions" id="exampleTextarea" rows="2"></textarea>
+    <img id="speaking" src="./images/speak.png" ng-click="eCtrl.speakInstructions()">
+    <small class="form-text text-muted"><br>Please enter verbal instructions for the user to the write the code. <br>The following words should not be used "dot", "period", "point", "var", etc. Use programming syntax!<n></n>.</small>
+  </div>
   <div class="form-group">
     <label class="label">Code Answers:</label>
     <textarea required class="form-control" ng-repeat="answers in eCtrl.exercise.answers track by $index" ng-model="eCtrl.exercise.answers[$index]" id="answers" rows="2"></textarea>
@@ -86,29 +93,23 @@
      <br>
       <button type="button" ng-click="eCtrl.addAnswer()">Add Additional Answers</button>
   </div>
-  <br>
+  <!--<br>
    <div class="form-group">
     <label class="label">Result Solutions:</label>
    <textarea placeholder="This is optional!" class="form-control" ng-repeat="solutions in eCtrl.exercise.solutions track by $index" class="form-control" ng-model="eCtrl.exercise.solutions[$index]" id="solutions" rows="2"></textarea>
     <small class="form-text text-muted"><br>Please enter the acceptable solutions. These solutions should only look at the final required values/conditions.<n></n></small>
     <br>
      <button type="button" ng-click="eCtrl.addSolution()">Add Additional Solutions</button>
-  </div>
-  <br>
-   <div class="form-group">
-    <label class="label">Verbal Instructions:</label>
-    <textarea class="form-control" ng-model="eCtrl.exercise.instructions" id="exampleTextarea" rows="2"></textarea>
-    <img id="speaking" src="./images/speak.png" ng-click="eCtrl.speakInstructions()">
-    <small class="form-text text-muted"><br>Please enter verbal instructions for the user to the write the code. <br>The following words should not be used "dot", "period", "point", "var", etc. Use programming syntax!<n></n>.</small>
-  </div>
+  </div>-->
   <br>
   <div class="form-group">
     <label class="label">Hint:</label>
     <textarea class="form-control" id="exampleTextarea" ng-model="eCtrl.exercise.hint" rows="2"></textarea>
   </div>
-
+<br>
   <button ng-click="eCtrl.createExercise()"type="submit"class="btn btn-primary center-block">Submit</button>
 <div>
+  <br>
 
 		<!-- Footer -->
 			<footer id="footer">

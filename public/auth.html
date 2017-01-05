@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Sign In</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<script src='assets/js/module.js'></script>
+      <script src='assets/js/authcontroller.js'></script>
+	
+	
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js" rel="stylesheet"/>
+
+</head>
+
+<body ng-app="SpeakingInCode" ng-controller="module.auth.controller as auth">
+	<!-- Header -->
+	<header id="header">
+		<div class="inner">
+			<nav id="nav" style="float:left; width:80vw">
+				<a style="float:left" href="#">Home</a>
+				<a style="float:left" href="#">Account</a>
+				<a style="float:left" href="#">Contact</a>
+
+			</nav>
+			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+		</div>
+	</header>
+	<!-- Banner -->
+	<section id="banner">
+		<div class="inner">
+    <div class ="loginApp" ng-show="auth.loginShow">
+			<p1 style="font-size:2em"> Speaking in Code </p1>
+	
+            <fieldset>
+            
+                <input style="text-align:center"  class="loginInput" required placeholder="Email" type="email" ng-model="auth.payloads.login.email"/>
+            </fieldset>
+            <fieldset>
+        
+                <input class="loginInput" required placeholder="Password" type="password" ng-model="auth.payloads.login.password"/>
+            </fieldset>
+            <button class="loginButton"  ng-click="auth.login.submit($event)" type="submit">Login</button>
+            <p ng-class="auth.login.alert">{{ auth.login.message }}</p>
+            <button class="loginButton" ng-click="auth.toggle()" > Register!</button>
+        
+    </div>
+	<div class = "loginApp" ng-show="!auth.loginShow">
+            <p1 style="font-size:2em"> Speaking in Code </p1>    
+            
+            <fieldset>
+              
+                <input class="loginInput" required placeholder="Create a public username" required type="text" ng-model="auth.register.name"/>
+            </fieldset>
+            <fieldset>
+    
+                <input class="loginInput" required placeholder="Email" type="email" required ng-model="auth.register.email"/>
+            </fieldset>
+            <fieldset>
+      
+            <input class="loginInput" required placeholder="Create a password" type="password" ng-model="auth.register.password"/>
+            </fieldset>
+            <button class="loginButton"  ng-click="auth.register.submit($event)" type="submit">Register</button>
+            <p ng-class="auth.register.alert">{{ auth.register.message }}</p>
+            <a href="./auth.html"><button style="text-align:center" class="loginButton" > Login! </button> </a>
+	</div>
+
+			</div>
+	</section>
+
+
+
+
+		<!-- Footer -->
+		
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
