@@ -100,7 +100,7 @@ function sicCtrl (SICFactory){
     }
     sCtrl.giveHint = function() {
         console.log('testing hint');
-         window.responsiveVoice.speak(sCtrl.challenge.instructions, sCtrl.language+" "+ sCtrl.gender,{pitch:sCtrl.pitch},{rate:sCtrl.speed},{volume:sCtrl.volume});
+         window.responsiveVoice.speak(sCtrl.challenge.hint, sCtrl.language+" "+ sCtrl.gender,{pitch:sCtrl.pitch},{rate:sCtrl.speed},{volume:sCtrl.volume});
     }
         sCtrl.pause = function() {
         window.responsiveVoice.cancel();
