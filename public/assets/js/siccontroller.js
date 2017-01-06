@@ -15,26 +15,92 @@ function sicCtrl (SICFactory){
     //         this.submit1 = false;
     //         return this.submit1;
     //     };
-    sCtrl.appsuccess = false;
+    sCtrl.options = false;
     sCtrl.appShow = true;
     sCtrl.typeShow = true;
     sCtrl.exercise = {};
     sCtrl.exerciseData = {};
     sCtrl.challenge = {};
     sCtrl.submission = "";
+
+    // if(sCtrl.volume) {
+    //       console.log("Setting Volume @" + sCtrl.volume)
+    //     }else{
+    //         sCtrl.volume = 1.5
+    //         console.log("Default volume")
+    //     }
+    // if(sCtrl.pitch) {
+    //       console.log("Setting Pitch to" + sCtrl.pitch)
+    //     }else{
+    //         sCtrl.pitch = 1
+    //         console.log("Default pitch")
+    //     }
+    // if(sCtrl.language) {
+    //       console.log("Setting language to" + sCtrl.language)
+    //     }else{
+    //         sCtrl.language = "US English"
+    //         console.log("Default language")
+    //     }
+    // if(sCtrl.speed) {
+          
+    //       console.log("Setting Speed @" + sCtrl.speed)
+    //     }else{
+    //         sCtrl.speed = 1
+    //         console.log("Default speed")
+    //     }
+    // if(sCtrl.gender) {
+         
+    //       console.log("Setting Gender @" + sCtrl.gender)
+    //     }else{
+    //         sCtrl.gender = "Male"
+    //         console.log("Default Gender")
+    //     }
+
     // sCtrl.getChallenge = function(){
     //     sCtrl.getExercise();
     //     sCtrl.challenge = sCtrl.exerciseData[Math.floor(Math.random() * sCtrl.exerciseData.length)]
     //     console.log("current challenge:",sCtrl.challenge);
     // }
-
+    
     sCtrl.doSomething = function() {
+        if(sCtrl.volume) {
+          console.log("Setting Volume @" + sCtrl.volume)
+        }else{
+            sCtrl.volume = 1.5
+            console.log("Default volume")
+        }
+    if(sCtrl.pitch) {
+          console.log("Setting Pitch to" + sCtrl.pitch)
+        }else{
+            sCtrl.pitch = 1
+            console.log("Default pitch")
+        }
+    if(sCtrl.language) {
+          console.log("Setting language to" + sCtrl.language)
+        }else{
+            sCtrl.language = "US English"
+            console.log("Default language")
+        }
+    if(sCtrl.speed) {
+          
+          console.log("Setting Speed @" + sCtrl.speed)
+        }else{
+            sCtrl.speed = 1
+            console.log("Default speed")
+        }
+    if(sCtrl.gender) {
+         
+          console.log("Setting Gender @" + sCtrl.gender)
+        }else{
+            sCtrl.gender = "Male"
+            console.log("Default Gender")
+        }
         console.log('testing voice');
-        window.responsiveVoice.speak(sCtrl.challenge.instructions, "US English Female",{rate:0.8},{volume: 2});
+        window.responsiveVoice.speak(sCtrl.challenge.instructions, sCtrl.language+" "+ sCtrl.gender,{pitch:sCtrl.pitch},{rate:sCtrl.speed},{volume:sCtrl.volume});
     }
     sCtrl.giveHint = function() {
         console.log('testing hint');
-        window.responsiveVoice.speak(sCtrl.challenge.hint, "US English Female",{rate:0.8},{volume: 2});
+         window.responsiveVoice.speak(sCtrl.challenge.instructions, sCtrl.language+" "+ sCtrl.gender,{pitch:sCtrl.pitch},{rate:sCtrl.speed},{volume:sCtrl.volume});
     }
         sCtrl.pause = function() {
         window.responsiveVoice.cancel();
@@ -99,7 +165,7 @@ function sicCtrl (SICFactory){
             document.getElementById('answerText').value = "";
         }   else {
             console.log("Fail Motherfucker");
-            alert("Try again Motherfucker");
+            sCtrl.toggle6();
 
         }
         console.log(answerkey)
@@ -131,5 +197,16 @@ function sicCtrl (SICFactory){
         console.log("Running")
        sCtrl.appsuccess = !sCtrl.appsuccess
     }
-
+    sCtrl.toggle4 = function() {
+        console.log("Running")
+       sCtrl.options = !sCtrl.options
+    }
+    sCtrl.toggle5 = function() {
+        console.log("Running")
+       sCtrl.options = true;
+    }
+     sCtrl.toggle6 = function() {
+        console.log("Running")
+       sCtrl.appfail = !sCtrl.appfail;
+    }
 }

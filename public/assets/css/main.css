@@ -3220,6 +3220,7 @@ padding-top:6px;
 
 			.inner {
 				max-width: 90%;
+				height: 150%;
 			}
 
 		}
@@ -3292,11 +3293,12 @@ padding-top:6px;
 #answerButton{
 
 	margin: auto;
-	width:12%;
-	text-align:left;
+	width:11%;
+	text-align:center;
 	top:39%;
     left: 80%;
 	position:absolute;
+	padding:0px;
 
 }
 #pauseButton{
@@ -3339,6 +3341,8 @@ padding-top:6px;
 	text-align: center;
 	font-size: 1.8em;
 	margin-top:30px;
+	width:60%;
+	margin:auto;
 }
 
 .appsuccess {
@@ -3404,6 +3408,12 @@ padding-top:6px;
 	margin:0 auto;
 	text-align: center;
 }
+#exampleSelects{
+	width:20%;
+	/*display:inline-block;*/
+	margin:0 auto;
+	text-align: center;
+}
 
 #answers{
 	width:40%;
@@ -3456,4 +3466,90 @@ padding-top:6px;
 	width: 40%;
 	height: 15% !important;
 	text-align: center !important;
+}
+#exampleSelect2{
+	width:20%;
+	margin-left:5em;
+	text-align: center !important;
+	/*display:inline-block;*/}
+
+.completed{
+	background-color:(255,255,255,0.8);
+	border-radius: 15px;
+	width:40%;
+	height:40%;
+
+}
+.options{
+	width:60em;
+	text-align: center;
+}
+
+.monkeybutton{
+	margin: auto;
+	width:9%;
+	text-align:left;
+	position:absolute;
+	left:2%;
+	vertical-align:middle;
+	padding:0px;
+}
+.appoptions {
+		max-width: 50em;
+		position:relative;
+		margin: 0 auto;
+		background-color:rgba(255,255,255,1);
+		border-radius:10px;
+		height:300px;
+		padding:10px;
+		margin-bottom:3vh;
+		border:3px solid rgba(186, 220, 221, .8);
+		text-align: center;
+	}
+.optionbars{
+	margin-top: 5%;
+	padding-left:5%;
+	padding-right:5%;
+  display: flex;
+  justify-content: space-between;
+	vertical-align:middle !important;
+		text-align: center !important;
+
+}
+.voiceoptions{
+	font-size: 1.3em !important;
+	margin-top: 10px;
+}
+
+#exampleSelect4{
+	width:14% !important;
+	padding-left: 4px;
+}
+
+#exampleSelect5{
+	width:14% !important;
+	padding-left: 4px;
+}
+#exampleSelect6{
+	width:14% !important;
+	padding-left: 4px;
+}
+#exampleSelect7{
+	width:14% !important;
+	padding-left: 4px;
+}
+#exampleSelect8{
+	width:14% !important;
+	padding-left: 4px !important;
+}
+
+
+.optionbars1{
+	margin-top: 6%;
+	margin-left: 3%;
+  display: flex;
+  justify-content: space-between;
+	vertical-align:middle !important;
+		text-align: center !important;
+
 }

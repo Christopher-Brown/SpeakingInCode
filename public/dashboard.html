@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html ng-app="SpeakingInCode">
+
+<head>
+	<title>Dashboard</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<script src='assets/js/module.js'></script>
+      <script src='assets/js/authcontroller.js'></script>
+	
+	
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js" rel="stylesheet"/>
+
+</head>
+
+<body ng-controller="DashboardController as dashboard">
+	<!-- Header -->
+	<header id="header">
+		<div class="inner">
+			<nav id="nav" style="float:left; width:80vw">
+				<a style="float:left" href="index.html">Home</a>
+				<a style="float:left" href="dashboard.html">Account</a>
+				<a style="float:left" href="#">Contact</a>
+				<a style="float:right" href="auth.html">
+				<ul>Logout!</ul>
+				</a>
+			</nav>
+			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+		</div>
+	</header>
+	<!-- Banner -->
+	<section id="banner">
+		<div class="inner">
+<div style="width:60em" class ="loginApp">
+<div class="options">
+			 <h1>My Account</h1>
+<h2 style="text-align:left; margin-left:2em"> Set your default voice</h2>
+
+<select ng-model="eCtrl.exercise.type" class="form-control" id="exampleSelect2">
+      <small id="emailHelp" class="form-text text-muted">
+  
+      <option value="" disabled>Gender</option>
+
+</select>
+<br>
+<select ng-model="eCtrl.exercise.type" class="form-control" id="exampleSelect2">
+      <small id="emailHelp" class="form-text text-muted">
+  
+      <option value="" disabled>Language</option>
+     
+</select>
+<br>
+<select ng-model="eCtrl.exercise.type" class="form-control" id="exampleSelect2">
+      <small id="emailHelp" class="form-text text-muted">
+  
+      <option value="" disabled>Pitch</option>
+     
+</select>
+<br>
+<select ng-model="eCtrl.exercise.type" class="form-control" id="exampleSelect2">
+      <small id="emailHelp" class="form-text text-muted">
+  
+      <option value="" disabled>Pitch</option>
+     
+</select>
+<br>
+<select ng-model="eCtrl.exercise.type" class="form-control" id="exampleSelect2">
+      <small id="emailHelp" class="form-text text-muted">
+  
+      <option value="" disabled>Volume</option>
+     
+</select>
+        <p><a href="/logout" class="btn btn-lg btn-danger">Logout</a></p>
+
+<div>
+
+
+
+</div>
+			
+
+
+    </div>
+	
+
+		</div>
+	</section>
+
+
+
+
+		<!-- Footer -->
+		
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,24 +1,19 @@
 require('colors');
+var config = require('./package');
 var express = require('express');
-var config = require('./package')
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose')
-mongoose.connect("mongodb://localhost/SpeakingInCode", (err)=>{
-    if(err){
-        console.log("Error connecting to mongo", err);
-    } else {
-        console.log("Connected to database!");
-    }
-});
+var logger = require('morgan')('dev');
+var mongoose = require('mongoose').connect('mongodb://localhost/', (mongooseErr) => {
+        if( mongooseErr ) {
+            console.error('#ERROR#'.red,'Could not initilize mongoose!', mongooseErr);
+        } else {
+            console.info('Mongoose initilized!'.green.bold);
+        }
+    });
 
-
-var logger = require('morgan');
-var User = require('./models/user.js');
-var Exercise = require('./models/exercise.js');
-var PORT = process.env.PORT || 3000;
 var sessions = require('client-sessions')({
     cookieName: config.name, // front-end cookie name, currently pulled from package.json, feel free to change
-    secret: 'DR@G0N$', // the encryption password : keep this safe
+    secret: 'chris1990', // the encryption password : keep this safe
     requestKey: 'session', // req.session,
     duration: (86400 * 1000) * 7, // one week in milliseconds
     cookie: {
@@ -26,9 +21,15 @@ var sessions = require('client-sessions')({
         httpOnly: true, // when true, the cookie is not accesbile via front-end JavaScript
         secure: false // when true, cookie will only be read when sent over HTTPS
     }
-}); // encrypted cookies!
+});
+var Exercise = require('./models/exercise.js');
+ PORT = process.env.PORT || 3000;
 // create our express app object
 var app = express();
+app.use(
+    bodyParser.json(),
+    bodyParser.urlencoded({ extended: true })
+);
 app.post('/createExercise', (req, res) => {
     console.log("Body: ", req.body);
 
@@ -46,8 +47,6 @@ app.post('/createExercise', (req, res) => {
         }
     });
 });
-
-
 // create a route to get exercises by type and difficulty
 app.get('/api/exercise/:type/:difficulty', (req, res) => {
     console.log("Getting exercises", req.params.type);
@@ -66,8 +65,6 @@ app.get('/api/exercise/:type/:difficulty', (req, res) => {
     });
 });
 var Routes = require('./routes');
-
-Routes(app);
 
 app.use(express.static('public'));
 // mount body parser middleware
@@ -92,14 +89,14 @@ app.use((req, res, next) => {
     next();
 });
 
-
+Routes(app);
 
 
 //listen for connections
 app.listen(PORT, (err) => {
-    if (err) {
-        console.log("Error starting server: ", err);
+    if( err ) {
+        console.error('#ERROR#'.red,'Could not start server! :(');
     } else {
-        console.log("Server started on port ", PORT);
+        console.log('\nMEAN Auth Server UP!'.green.bold, 'PORT:'.yellow, PORT);
     }
-})
+});
